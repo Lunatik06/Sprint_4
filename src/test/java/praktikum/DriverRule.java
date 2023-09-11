@@ -1,6 +1,5 @@
 package praktikum;
 
-import org.junit.Before;
 import org.junit.rules.ExternalResource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,7 +16,6 @@ public class DriverRule extends ExternalResource {
 
     WebDriver driver;
 
-
     // выбор окружеия через конфигурацию
     @Override
     protected void before() throws Throwable {
@@ -28,7 +26,6 @@ public class DriverRule extends ExternalResource {
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
-
 
     public void setUpChrome() {
         System.setProperty("webdriver.http.factory", "jdk-http-client");
@@ -54,16 +51,12 @@ public class DriverRule extends ExternalResource {
         driver = new FirefoxDriver(service, options);
     }
 
-
-
     @Override
     protected void after() {
         driver.quit();
     }
 
-
-
-    public  WebDriver getDriver() {
+    public WebDriver getDriver() {
         return driver;
     }
 }

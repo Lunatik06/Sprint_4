@@ -6,15 +6,11 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import pages.MainPage;
 import pages.OrderPage;
-import pages.TrackPage;
-
-import static junit.framework.TestCase.assertEquals;
 
 
 // параметризованный сценарий по созданию заказа
 @RunWith(Parameterized.class)
 public class OrderTest {
-
 
     private final String name;
     private final String surname;
@@ -22,29 +18,26 @@ public class OrderTest {
     private final String station;
     private final String phone;
     private final String comment;
-
-
-        public OrderTest(String name, String surname, String address, String station, String phone, String comment) {
-            this.name = name;
-            this.surname = surname;
-            this.address = address;
-            this.station = station;
-            this.phone = phone;
-            this.comment = comment;
-        }
-
-        // Тестовые данные
-        @Parameterized.Parameters
-        public static Object[][] getTestData() {
-            return new Object[][] {
-                    { "Алексей", "Желторотов", "г. Верхний Тор-Плюс, ул. Ленсовета, д. 91, кв. 12", "Кузьминки", "89992542934", ""},
-                    { "Иван", "Петров", "г. Москва, ул. Дворцовая, д. 9, кв. 55", "ВДНХ", "+79992542934", "Позвоните за 15 минут до прибытия."},
-            };
-        }
-
-
     @Rule
     public DriverRule driverRule = new DriverRule();
+
+    public OrderTest(String name, String surname, String address, String station, String phone, String comment) {
+        this.name = name;
+        this.surname = surname;
+        this.address = address;
+        this.station = station;
+        this.phone = phone;
+        this.comment = comment;
+    }
+
+    // Тестовые данные
+    @Parameterized.Parameters
+    public static Object[][] getTestData() {
+        return new Object[][]{
+                {"Алексей", "Желторотов", "г. Верхний Тор-Плюс, ул. Ленсовета, д. 91, кв. 12", "Кузьминки", "89992542934", ""},
+                {"Иван", "Петров", "г. Москва, ул. Дворцовая, д. 9, кв. 55", "ВДНХ", "+79992542934", "Позвоните за 15 минут до прибытия."},
+        };
+    }
 
     //  Заказ через кнопку в хедере
     @Test
@@ -97,7 +90,6 @@ public class OrderTest {
                 .checkConfirmPopup();
 
     }
-
 
 
 }
